@@ -105,6 +105,34 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* QR Code Donation Section */
+    #donation {
+      display: none;
+      opacity: 0;
+      text-align: center;
+      margin-top: 40px;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    #donation img {
+      width: 160px;
+      margin-top: 10px;
+      border: 2px solid cyan;
+      border-radius: 12px;
+      box-shadow: 0 0 15px cyan;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -113,6 +141,12 @@
   <div class="card-container" id="factsContainer"></div>
   <div class="loading" id="loadingMessage">Fetching historical facts...</div>
   <button id="backBtn">🔙 Back to Portal</button>
+
+  <!-- QR Donation Section -->
+  <div id="donation">
+    <p>💖 Like ChronoPortal? Support me via below PhonePe qr:</p>
+    <img src="phonepe-qr.png" alt="PhonePe QR Code" />
+  </div>
 
   <footer id="footer">
     <p>Designed By - Kislay Kumar</p>
@@ -128,6 +162,7 @@
     const title = document.getElementById("resultsTitle");
     const loading = document.getElementById("loadingMessage");
     const footer = document.getElementById("footer");
+    const donation = document.getElementById("donation");
 
     title.textContent = `🕒 Historical Events of Year ${year}`;
 
@@ -187,10 +222,12 @@
         checkAndShowFooter();
       });
 
+    // Back button
     document.getElementById("backBtn").addEventListener("click", () => {
       window.location.href = "index.html";
     });
 
+    // Stars background
     function generateStars() {
       const starField = document.getElementById('starField');
       for (let i = 0; i < 100; i++) {
@@ -207,6 +244,11 @@
     }
 
     generateStars();
+
+    // Show QR after 3s
+    setTimeout(() => {
+      donation.style.display = 'block';
+    }, 3000);
   </script>
 </body>
 </html>
